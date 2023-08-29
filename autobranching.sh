@@ -13,7 +13,8 @@ desiredLine="${majorVersion}.${minorVersion}"
 
 
 desiredLineExists=false
-if git rev-parse --verify "origin/release/${desiredLine}"
+#TODO "origin/release/${desiredLine}"
+if git rev-parse --verify "release/${desiredLine}"
 then
     desiredLineExists=true
     echo "Release branch for version line ${desiredLine} exists"
@@ -74,3 +75,4 @@ then
     #TODO git push
 fi
 
+git checkout $BRANCH
