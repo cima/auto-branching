@@ -54,26 +54,27 @@ then
     git add .
     git commit -m "Future development version ${futureVersion}"    
     #TODO git push
-
-    # --- Desired version to be released ---
-    git checkout "release/${desiredLine}"
-    echo "{\"version\":\"${desiredVersion}\"}" > uuapp.json
-    git add .
-    git commit -m "Release version ${desiredVersion}"
-    git tag "${desiredVersion}"
-    #TODO git push
-
-    # --- Desired version to be released ---
-    nextPatchVersion=$(($patchVersion + 1))
-    nextDesiredVersion="${majorVersion}.${minorVersion}.${nextPatchVersion}"
-    nextReleaseVersion="${nextDesiredVersion}-DEV"
-    echo "{\"version\":\"${nextReleaseVersion}\"}" > uuapp.json
-    git add .
-    git commit -m "Release version ${nextReleaseVersion}"
-    #TODO git push
-
-    git checkout $desiredVersion
-    git rev-parse HEAD > GIT_COMMIT.sha1
 fi
+
+# --- Desired version to be released ---
+git checkout "release/${desiredLine}"
+echo "{\"version\":\"${desiredVersion}\"}" > uuapp.json
+git add .
+git commit -m "Release version ${desiredVersion}"
+git tag "${desiredVersion}"
+#TODO git push
+
+# --- Desired version to be released ---
+nextPatchVersion=$(($patchVersion + 1))
+nextDesiredVersion="${majorVersion}.${minorVersion}.${nextPatchVersion}"
+nextReleaseVersion="${nextDesiredVersion}-DEV"
+echo "{\"version\":\"${nextReleaseVersion}\"}" > uuapp.json
+git add .
+git commit -m "Release version ${nextReleaseVersion}"
+#TODO git push
+
+git checkout $desiredVersion
+git rev-parse HEAD > GIT_COMMIT.sha1
+
 
 git checkout $BRANCH
