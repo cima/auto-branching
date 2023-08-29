@@ -2,7 +2,7 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="3"
+minorVersion="4"
 patchVersion="0"
 versionSuffix="DEV"
 BRANCH="master"
@@ -64,8 +64,6 @@ then
     #TODO git push
 
     # --- Desired version to be released ---
-    majorVersion="1"
-    minorVersion="0"
     nextPatchVersion=$(($patchVersion + 1))
     nextDesiredVersion="${majorVersion}.${minorVersion}.${nextPatchVersion}"
     nextReleaseVersion="${nextDesiredVersion}-DEV"
