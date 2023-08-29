@@ -2,7 +2,7 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="0"
+minorVersion="1"
 patchVersion="0"
 versionSuffix="DEV"
 BRANCH="master"
