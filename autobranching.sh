@@ -22,18 +22,18 @@ else
 fi
 
 isCurrentBranchDesired=false
-if ["${BRANCH}" -eq "release/${desiredLine}"]
+if [ "${BRANCH}" == "release/${desiredLine}" ]
 then
     isCurrentBranchDesired=true
 fi
 
-if [ $desiredLineExists && !$isCurrentBranchDesired ]
+if [ $desiredLineExists == true ] && [ $isCurrentBranchDesired == false ]
 then
     echo "Unsupported state. Either release new line or start from release branch."
     exit 1
 fi
 
-if [ ! $desiredLineExists ]
+if [ $desiredLineExists == false ]
 then
 
     # --- Desired release branch ---
