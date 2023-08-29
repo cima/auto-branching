@@ -2,7 +2,7 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="2"
+minorVersion="3"
 patchVersion="0"
 versionSuffix="DEV"
 BRANCH="master"
@@ -47,7 +47,7 @@ then
 
     # --- Future development version ---
     echo "Create future commit"
-    futureMinor==$(($minorVersion + 1))
+    futureMinor=$(($minorVersion + 1))
     futureVersion="${majorVersion}.${futureMinor}.0-DEV"
 
     echo "{\"version\":\"${futureVersion}\"}" > uuapp.json
