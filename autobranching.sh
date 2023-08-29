@@ -48,14 +48,14 @@ then
 
     echo "{\"version\":\"${futureVersion}\"}" > uuapp.json
     git add .
-    git git commit -m "Future development version ${futureVersion}"    
+    git commit -m "Future development version ${futureVersion}"    
     #TODO git push
 
     # --- Desired version to be released ---
     git checkout "release/${desiredLine}"
     echo "{\"version\":\"${desiredVersion}\"}" > uuapp.json
     git add .
-    git git commit -m "Release version ${desiredVersion}"
+    git commit -m "Release version ${desiredVersion}"
     git tag "${desiredVersion}"
     #TODO git push
 
@@ -67,7 +67,7 @@ then
     nextReleaseVersion="${nextDesiredVersion}-DEV"
     echo "{\"version\":\"${nextReleaseVersion}\"}" > uuapp.json
     git add .
-    git git commit -m "Release version ${nextReleaseVersion}"
+    git commit -m "Release version ${nextReleaseVersion}"
     #TODO git push
 fi
 
