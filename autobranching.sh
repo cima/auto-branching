@@ -5,7 +5,7 @@ majorVersion="1"
 minorVersion="0"
 patchVersion="0"
 versionSuffix="DEV"
-BRANCH="sprint"
+BRANCH="master"
 # Variables obtained by groovy
 
 desiredVersion="${majorVersion}.${minorVersion}.${patchVersion}"
