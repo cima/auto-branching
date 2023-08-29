@@ -2,7 +2,7 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="1"
+minorVersion="2"
 patchVersion="0"
 versionSuffix="DEV"
 BRANCH="master"
@@ -67,7 +67,7 @@ then
     majorVersion="1"
     minorVersion="0"
     nextPatchVersion=$(($patchVersion + 1))
-    nextDesiredVersion="${majorVersion}.${minorVersion}."
+    nextDesiredVersion="${majorVersion}.${minorVersion}.${nextPatchVersion}"
     nextReleaseVersion="${nextDesiredVersion}-DEV"
     echo "{\"version\":\"${nextReleaseVersion}\"}" > uuapp.json
     git add .
