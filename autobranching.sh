@@ -71,6 +71,9 @@ then
     git add .
     git commit -m "Release version ${nextReleaseVersion}"
     #TODO git push
+
+    git checkout $desiredVersion
+    git rev-parse HEAD > GIT_COMMIT.sha1
 fi
 
 git checkout $BRANCH
