@@ -2,10 +2,10 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="4"
+minorVersion="5"
 patchVersion="0"
 versionSuffix="DEV"
-BRANCH="master"
+BRANCH="release/1.5"
 # Variables obtained by groovy
 
 desiredVersion="${majorVersion}.${minorVersion}.${patchVersion}"
