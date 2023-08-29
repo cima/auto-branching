@@ -59,6 +59,7 @@ fi
 if git rev-parse --verify "${desiredVersion}"
 then
     echo "Desired version tag ${desiredVersion} alredy exists. Figure out version file correction and start over."
+    exit 2
 fi
 
 # --- Desired version to be released ---
