@@ -36,6 +36,9 @@ fi
 if [ $desiredLineExists == false ]
 then
 
+    git config user.name "Jenkins"
+    git config user.email "jenkins@jenkins.ume.entsoe.eu"
+
     # --- Desired release branch ---
     echo "Create release branch"
     git branch "release/${desiredLine}"
