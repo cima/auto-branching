@@ -2,7 +2,7 @@
 
 # Variables obtained by groovy
 majorVersion="1"
-minorVersion="5"
+minorVersion="6"
 patchVersion="0"
 versionSuffix="DEV"
 BRANCH="master"
@@ -54,6 +54,11 @@ then
     git add .
     git commit -m "Future development version ${futureVersion}"    
     #TODO git push
+fi
+
+if git rev-parse --verify "${desiredVersion}"
+then
+    echo "Desired version tag ${desiredVersion} alredy exists. Figure out version file correction and start over."
 fi
 
 # --- Desired version to be released ---
