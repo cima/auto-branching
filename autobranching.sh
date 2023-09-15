@@ -10,8 +10,8 @@ desiredLine="${majorVersion}.${minorVersion}"
 echo $desiredVersion
 echo $desiredLine
 
-desiredLineExists=[ isDesiredLinePresent $desiredLine ] && true || false
-isCurrentBranchDesired=[ isBranchDesired $BRANCH $desiredLine ] && true || false
+desiredLineExists=$(isDesiredLinePresent $desiredLine)
+isCurrentBranchDesired=$(isBranchDesired $BRANCH $desiredLine)
 
 
 echo $desiredLineExists
