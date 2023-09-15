@@ -1,32 +1,13 @@
 #!/bin/bash
 
-# Variables obtained by groovy
-majorVersion="1"
-minorVersion="7"
-patchVersion="1"
-versionSuffix="DEV"
-BRANCH="release/1.7"
-# Variables obtained by groovy
+. .env
+. autobranchingLib.sh
 
 desiredVersion="${majorVersion}.${minorVersion}.${patchVersion}"
 desiredLine="${majorVersion}.${minorVersion}"
 
-
-desiredLineExists=false
-#TODO "origin/release/${desiredLine}"
-if git rev-parse --verify "release/${desiredLine}"
-then
-    desiredLineExists=true
-    echo "Release branch for version line ${desiredLine} exists"
-else
-    echo "Release branch for version line ${desiredLine} is missing"
-fi
-
-isCurrentBranchDesired=false
-if [ "${BRANCH}" == "release/${desiredLine}" ]
-then
-    isCurrentBranchDesired=true
-fi
+desiredLineExists=isDesiredLinePresent $desiredLine
+isCurrentBranchDesired=isBranchDesired $BRANCH $desiredLine
 
 if [ $desiredLineExists == true ] && [ $isCurrentBranchDesired == false ]
 then
@@ -36,24 +17,7 @@ fi
 
 if [ $desiredLineExists == false ]
 then
-
-    git config user.name "Jenkins"
-    git config user.email "jenkins@jenkins.ume.entsoe.eu"
-
-    # --- Desired release branch ---
-    echo "Create release branch"
-    git branch "release/${desiredLine}"
-    #TODO git push branch
-
-    # --- Future development version ---
-    echo "Create future commit"
-    futureMinor=$(($minorVersion + 1))
-    futureVersion="${majorVersion}.${futureMinor}.0-DEV"
-
-    echo "{\"version\":\"${futureVersion}\"}" > uuapp.json
-    git add .
-    git commit -m "Future development version ${futureVersion}"    
-    #TODO git push
+    branchOutDesiredLine $desiredLine
 fi
 
 if git rev-parse --verify "${desiredVersion}"
@@ -63,12 +27,7 @@ then
 fi
 
 # --- Desired version to be released ---
-git checkout "release/${desiredLine}"
-echo "{\"version\":\"${desiredVersion}\"}" > uuapp.json
-git add .
-git commit -m "Release version ${desiredVersion}"
-git tag "${desiredVersion}"
-#TODO git push
+createDesiredVersion
 
 # --- Desired version to be released ---
 nextPatchVersion=$(($patchVersion + 1))
@@ -82,5 +41,7 @@ git commit -m "Release version ${nextReleaseVersion}"
 git checkout $desiredVersion
 git rev-parse HEAD > GIT_COMMIT.sha1
 
+# TODO create
 
+# return to initial branch
 git checkout $BRANCH
