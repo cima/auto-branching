@@ -10,20 +10,20 @@ desiredLine="${majorVersion}.${minorVersion}"
 echo $desiredVersion
 echo $desiredLine
 
-desiredLineExists=[ isDesiredLinePresent $desiredLine ]
-isCurrentBranchDesired=[ isBranchDesired $BRANCH $desiredLine ]
+desiredLineExists=[ isDesiredLinePresent $desiredLine ] && true || false
+isCurrentBranchDesired=[ isBranchDesired $BRANCH $desiredLine ] && true || false
 
 
 echo $desiredLineExists
 echo $isCurrentBranchDesired
 
-if [ $desiredLineExists == 0 ] && [ $isCurrentBranchDesired == 0 ]
+if [ $desiredLineExists == false ] && [ $isCurrentBranchDesired == false ]
 then
     echo "Unsupported state. Either release new line or start from release branch."
     exit 1
 fi
 
-if [ $desiredLineExists == 0 ]
+if [ $desiredLineExists == false ]
 then
     branchOutDesiredLine $desiredLine
 fi
