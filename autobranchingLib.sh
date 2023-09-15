@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 function isDesiredLinePresent() {
     desiredLine=$1
 
@@ -7,10 +9,10 @@ function isDesiredLinePresent() {
     if git rev-parse --verify "release/${desiredLine}"
     then
         echo "Release branch for version line ${desiredLine} exists"
-        return 1
+        return 0
     else
         echo "Release branch for version line ${desiredLine} is missing"
-        return 0
+        return 2
     fi
 }
 
@@ -21,9 +23,9 @@ function isBranchDesired() {
     #TODO "origin/release/${desiredLine}"
     if [ "${BRANCH}" == "release/${desiredLine}" ]
     then
-        return 1
-    else
         return 0
+    else
+        return 2
     fi
 }
 

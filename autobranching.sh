@@ -1,13 +1,21 @@
 #!/bin/bash
 set -e
+#set -x
 . .env
 . autobranchingLib.sh
 
 desiredVersion="${majorVersion}.${minorVersion}.${patchVersion}"
 desiredLine="${majorVersion}.${minorVersion}"
 
-desiredLineExists=$(isDesiredLinePresent $desiredLine)
-isCurrentBranchDesired=$(isBranchDesired $BRANCH $desiredLine)
+echo $desiredVersion
+echo $desiredLine
+
+desiredLineExists=[ isDesiredLinePresent $desiredLine ]
+isCurrentBranchDesired=[ isBranchDesired $BRANCH $desiredLine ]
+
+
+echo $desiredLineExists
+echo $isCurrentBranchDesired
 
 if [ $desiredLineExists == 0 ] && [ $isCurrentBranchDesired == 0 ]
 then
