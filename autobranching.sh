@@ -1,21 +1,21 @@
 #!/bin/bash
-
+set -e
 . .env
 . autobranchingLib.sh
 
 desiredVersion="${majorVersion}.${minorVersion}.${patchVersion}"
 desiredLine="${majorVersion}.${minorVersion}"
 
-desiredLineExists=isDesiredLinePresent $desiredLine
-isCurrentBranchDesired=isBranchDesired $BRANCH $desiredLine
+desiredLineExists=$(isDesiredLinePresent $desiredLine)
+isCurrentBranchDesired=$(isBranchDesired $BRANCH $desiredLine)
 
-if [ $desiredLineExists == true ] && [ $isCurrentBranchDesired == false ]
+if [ $desiredLineExists == 0 ] && [ $isCurrentBranchDesired == 0 ]
 then
     echo "Unsupported state. Either release new line or start from release branch."
     exit 1
 fi
 
-if [ $desiredLineExists == false ]
+if [ $desiredLineExists == 0 ]
 then
     branchOutDesiredLine $desiredLine
 fi
